@@ -31,8 +31,8 @@ ENV NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 ENV PATH=/home/node/.npm-packages/bin:${PATH}
 RUN set -x \
     && mkdir "${HOME}/.npm-packages" \
-    && npm config set prefix '~/.npm-packages/' \
+    && npm config set prefix "${HOME}/.npm-packages/" \
     && npm install -g \
-        npm@~7.6.3 \
-        npm-check \
-        webpack-bundle-analyzer
+        npm@^7.6.3 \
+        npm-check@* \
+        webpack-bundle-analyzer@*
