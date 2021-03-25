@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-link to="/" @click.native="buttonClicked('home')">Home</router-link>
-    <router-link to="/app1" @click.native="buttonClicked('app1')">App1</router-link>
-    <router-link to="/app2" @click.native="buttonClicked('app2')">App2</router-link>
+    <router-link class="link" to="/" @click.native="buttonClicked('home')">Home</router-link>
+    <router-link class="link" to="/app1" @click.native="buttonClicked('app1')">Highcharts</router-link>
+    <router-link class="link" to="/app2" @click.native="buttonClicked('app2')">PowerBi</router-link>
   </div>
 </template>
 
@@ -18,5 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.link {
+  margin-right: 20px;
+}
 </style>

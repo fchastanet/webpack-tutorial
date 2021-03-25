@@ -88,12 +88,15 @@ Video:
 
 ## Part 3: bigger app
 
-Aim: add powerbi lib on App1 and highcharts lib on App2 and see performance
+Aim: add highcharts lib on App1 and powerbi lib on App2 and see performance issues
 
+Video:
+* show differences between 2 folders
+* show size of the bundle
+* show bundle analysis difference
+* notice `[DEP_WEBPACK_TEMPLATE_PATH_PLUGIN_REPLACE_PATH_VARIABLES_HASH] DeprecationWarning: [hash] is now [fullhash] (also consider using [chunkhash] or [contenthash], see documentation for details)` warning
 
-## Part 4: Minification
-
-## Part 5: Lazy loading
+## Part 4: Minification & Lazy loading
 
 Points of attention:
 * Fix warning
