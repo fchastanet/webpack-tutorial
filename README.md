@@ -62,6 +62,9 @@ Video:
 * show that debug with sourcemap is working
 * show vue plugin is working
 
+Points of attention:
+- .babelrc modules property set to false in order to user es6 import/export, it will be useful for [Tree shaking](https://webpack.js.org/guides/tree-shaking/) to work
+- 
 ## Part 2: Webpack prod config
 
 Aim: cut the web config in two config files (prod & development)

@@ -1,14 +1,20 @@
 'use strict'
 
-const webpack = require('webpack')
-const {VueLoaderPlugin} = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+// detection of devMode has changed since webpack3
+const devMode = process.argv[process.argv.indexOf('--mode') + 1] !== 'production';
+const isServing = process.argv.indexOf('serve') !== -1 || devMode
 
 module.exports = {
-  devtool: 'source-map',
-  mode: 'development',
   entry: {
     main: './src/index.js',
+  },
+  output: {
+    publicPath: '/',
+    clean: true,
   },
   module: {
     rules: [
@@ -27,17 +33,20 @@ module.exports = {
       },
       {
         test: /\.css?$/,
-        use: [{loader: 'css-loader'}]
-      }, 
-      {
+        use: [
+          // 'style-loader' - injects CSS into the DOM using multiple style tag and works faster.
+          (devMode) ? 'style-loader' : MiniCssExtractPlugin.loader,
+        ]
+      }, {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          // 'style-loader' - injects CSS into the DOM using multiple style tag and works faster.
+          (devMode) ? 'style-loader' : MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: devMode,
               esModule: true
             }
           },
@@ -45,7 +54,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: devMode
             }
           }
         ]
@@ -54,24 +63,31 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'index.[hash:8].css',
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true
     }),
-    new webpack.HotModuleReplacementPlugin(),
+   
   ],
   devServer: {
     clientLogLevel: 'warning',
-    hot: true,
+    hot: false,
     contentBase: 'dist',
-    compress: false,
-    inline: true,
+    compress: true,
+    inline: false,
     port: 8080,
-    open: true,
-    overlay: {warnings: false, errors: true},
+    open: isServing,
+    overlay: { warnings: false, errors: true },
     publicPath: '/',
-    quiet: false,
+    quiet: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+    }
   },
   watchOptions: {
     aggregateTimeout: 300,
