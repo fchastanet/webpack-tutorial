@@ -6,9 +6,10 @@ const baseConfig = require('./webpack.config')
 module.exports = merge(
   baseConfig('production', process.argv), 
   {
-    devServer: {
-      open: true,
-      contentBase: './dist',
+    optimization: {
+      minimizer: [
+        // TODO in next part
+      ]
     },
   }
 )

@@ -38,7 +38,9 @@ Also Webpack is able to manage these dependencies for us (download them when nee
 
 Webpack will parse your js files and make a dependency graph. For formats that are not javascript, webpack via plugins provides loaders used to convert a givent format (eg: scss, css, vue, ...) to javascript format
 
-## Part 1: Webpack base configuration
+## Tutorial
+
+### Part 1: Webpack base configuration
 
 ```sh
 # jump to the directory 1_base
@@ -65,7 +67,7 @@ Video:
 Points of attention:
 - .babelrc modules property set to false in order to user es6 import/export, it will be useful for [Tree shaking](https://webpack.js.org/guides/tree-shaking/) to work
 - 
-## Part 2: Webpack prod config
+### Part 2: Webpack prod config
 
 Aim: cut the web config in two config files (prod & development)
 
@@ -86,7 +88,7 @@ Video:
 * show difference between prod and dev mode
 * first bundle analysis
 
-## Part 3: bigger app
+### Part 3: bigger app and production build
 
 Aim: add highcharts lib on App1 and powerbi lib on App2 and see performance issues
 
@@ -94,13 +96,25 @@ Video:
 * show differences between 2 folders
 * show size of the bundle
 * show bundle analysis difference
-* notice `[DEP_WEBPACK_TEMPLATE_PATH_PLUGIN_REPLACE_PATH_VARIABLES_HASH] DeprecationWarning: [hash] is now [fullhash] (also consider using [chunkhash] or [contenthash], see documentation for details)` warning
 
-## Part 4: Minification & Lazy loading
+### Part 4: Minification & Lazy loading
 
-Points of attention:
-* Fix warning
-`[DEP_WEBPACK_TEMPLATE_PATH_PLUGIN_REPLACE_PATH_VARIABLES_HASH] DeprecationWarning: [hash] is now [fullhash] (also consider using [chunkhash] or [contenthash], see documentation for details)`
+Aim: limit the size of the bundle
+
+Video:
+* discover that TerserPlugin is already applied in production mode
+* show differences between 2 folders
+* show size of the bundle
+* show bundle analysis difference
+
+### Part 5: add Jest
+
+### Part 6: add IE11 support
+
+Video:
+* move browser list to package.json
+* explain last 2 major versions including actually ie10 (can be checked with debug in .babelrc)
+* browser list is taken into account by webpack, without that arrow functions would not have been converted by babel
 
 ## cleaning
 execute the following commands:
