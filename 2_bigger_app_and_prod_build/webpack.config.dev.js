@@ -1,5 +1,4 @@
 'use strict'
-
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.config')
@@ -13,10 +12,7 @@ const config = merge(
       compress: false,
       inline: true,
       quiet: false,
-    }
-  }
-)
-
+  }})
 config.plugins.push(new webpack.HotModuleReplacementPlugin())
 
 module.exports = config

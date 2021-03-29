@@ -1,11 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from "../pages/Home.vue";
-import App1 from "../pages/App1.vue";
-import App2 from "../pages/App2.vue";
-
 Vue.use(Router)
+
 
 const router = new Router({
   history: true,
@@ -14,12 +11,18 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: () => import(
+        /* webpackChunkName: "home" */
+        "../pages/Home.vue"
+      )
     },
     {
       path: '/app1',
       name: 'app1',
-      component: App1,
+      component: () => import(
+        /* webpackChunkName: "app1" */
+        "../pages/App1.vue"
+      ),
       meta: {
         title: 'Application 1'
       }
@@ -27,7 +30,10 @@ const router = new Router({
     {
       path: '/app2',
       name: 'app2',
-      component: App2,
+      component: () => import(
+        /* webpackChunkName: "app2" */
+        "../pages/App2.vue"
+      ),
       meta: {
         title: 'Application 2'
       }

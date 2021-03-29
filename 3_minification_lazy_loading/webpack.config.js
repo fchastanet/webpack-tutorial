@@ -10,7 +10,7 @@ module.exports = (mode, argv) => {
     process.exit(-1);
   }
   const devMode = mode !== 'production'
-  const isServing = argv.indexOf('serve') !== -1 || devMode
+  const isServing = argv.indexOf('--profile') !== -1 && (argv.indexOf('serve') !== -1 || devMode)
   return {
     mode,
     entry: {
@@ -18,7 +18,6 @@ module.exports = (mode, argv) => {
     },
     output: {
       publicPath: '/',
-      clean: true,
     },
     module: {
       rules: [
@@ -40,6 +39,13 @@ module.exports = (mode, argv) => {
           use: [
             // 'style-loader' - injects CSS into the DOM using multiple style tag and works faster.
             (devMode) ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: devMode,
+                esModule: true
+              }
+            }
           ]
         }, {
           test: /\.scss$/,
@@ -68,7 +74,7 @@ module.exports = (mode, argv) => {
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'index.[hash:8].css',
+        filename: 'index.[fullhash:8].css',
       }),
       new HtmlWebpackPlugin({
         filename: 'index.html',
