@@ -67,9 +67,10 @@ Video:
 Points of attention:
 - .babelrc modules property set to false in order to user es6 import/export, it will be useful for [Tree shaking](https://webpack.js.org/guides/tree-shaking/) to work
 - 
-### Part 2: Webpack prod config
+### Part 2: bigger app and Webpack prod config
 
-Aim: cut the web config in two config files (prod & development)
+Aim 1: add highcharts lib on App1 and powerbi lib on App2 and see performance issues
+Aim 2: cut the web config in two config files (prod & development)
 
 configure prod environment :
 - remove web-dev-server
@@ -88,16 +89,7 @@ Video:
 * show difference between prod and dev mode
 * first bundle analysis
 
-### Part 3: bigger app and production build
-
-Aim: add highcharts lib on App1 and powerbi lib on App2 and see performance issues
-
-Video:
-* show differences between 2 folders
-* show size of the bundle
-* show bundle analysis difference
-
-### Part 4: Minification & Lazy loading
+### Part 3: Minification & Lazy loading
 
 Aim: limit the size of the bundle
 
@@ -107,14 +99,23 @@ Video:
 * show size of the bundle
 * show bundle analysis difference
 
-### Part 5: add Jest
+### Part 4: add Jest
+TODO
 
-### Part 6: add IE11 support
+### Part 5: add Loading component
+
+Aim: add a component that will show the user that application is loading
+
+TODO integrate https://vuejs.org/v2/guide/components-dynamic-async.html#Handling-Loading-State
+
+### Part 6: change browser support
+Aim: change browser support and see impact on bundle size
 
 Video:
 * move browser list to package.json
 * explain last 2 major versions including actually ie10 (can be checked with debug in .babelrc)
 * browser list is taken into account by webpack, without that arrow functions would not have been converted by babel
+* show bundle analysis difference
 
 ## cleaning
 execute the following commands:
